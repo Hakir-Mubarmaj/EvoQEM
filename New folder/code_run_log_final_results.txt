@@ -1,0 +1,131 @@
+(venv) PS E:\Books & documents\Research\EvoQEM\pdr_qpd_fixed> python main_adaptive.py                                                                                   
+============================================================            
+Adaptive QPD-PDR — Theorem 1 Validation Experiments
+Ideal <ZZ> = 0.57502  |  Shots: 8192  |  Seed: 42
+============================================================
+[Executor] Using FakeFezV2 noise model.
+Hardware: Backend: aer_simulator | ε_1q=0.000764 | ε_2q=0.010157 | ε_SWAP=0.030163
+ε_SWAP = 1-(1-0.010157)³ = 0.030163
+γ (QPD 1-norm) = 2.0
+Theorem 1 Preview (ZZ-transparent CZ regime):
+  LHS = γ·ε_frag(ZZ) = 0.003056 (constant)
+  RHS (n_SWAP=0)    = 0.001528 → Direct wins
+  RHS (n_SWAP=1)    = 0.031691 → QPD wins
+============================================================
+Experiment 1: Break-Even Validation
+============================================================
+  n_SWAP=0: DirectRAW=0.03471  QPD+PDR=0.00925  [Theory: LHS=0.00306, RHS=0.00153, pred=Direct]
+  n_SWAP=1: DirectRAW=0.05652  QPD+PDR=0.00709  [Theory: LHS=0.00306, RHS=0.03169, pred=QPD]
+  n_SWAP=2: DirectRAW=0.08168  QPD+PDR=0.00758  [Theory: LHS=0.00306, RHS=0.06185, pred=QPD]
+  n_SWAP=3: DirectRAW=0.10269  QPD+PDR=0.00718  [Theory: LHS=0.00306, RHS=0.09202, pred=QPD]
+  [Figure saved] adaptive_exp1_breakeven.png
+============================================================
+Experiment 2: Adaptive Framework Accuracy
+============================================================
+  Scenario: Connected (n_SWAP=0)
+  Theorem 1 Decision: DIRECT
+    LHS=0.003056  RHS=0.001528
+    Empirical winner: QPD (✗ Mismatch)
+    Direct error:   0.00803
+    QPD error:      0.00684
+    Adaptive error: 0.00803
+  Scenario: Routing Required (n_SWAP=2)
+  Theorem 1 Decision: QPD
+    LHS=0.003056  RHS=0.061853
+    Empirical winner: QPD (✓ Matches decision)
+    Direct error:   0.00849
+    QPD error:      0.00634
+    Adaptive error: 0.00634
+  [Figure saved] adaptive_exp2_decision.png
+============================================================
+Experiment 3: 4-Qubit Scaling (2 cuts, γ=4)
+============================================================
+  4-qubit ideal <ZZZZ> ≈ 0.57502
+  γ for 2 cuts = 4.0 (sampling overhead = 16×)
+  Per-cut analysis (Theorem 1):
+    n_SWAP=0: LHS=0.00611 vs RHS=0.02337 → QPD wins
+    n_SWAP=1: LHS=0.00611 vs RHS=0.05353 → QPD wins
+    n_SWAP=2: LHS=0.00611 vs RHS=0.08370 → QPD wins
+  2-qubit component results (15 trials):
+    Direct+PDR: 0.00711 ± 0.00561
+    QPD+PDR:    0.00681 ± 0.00429
+  [Figure saved] adaptive_exp3_scaling.png
+[CSV] Saved → results\adaptive_summary.csv
+============================================================
+All experiments complete.
+Figures and CSV saved to: E:\Books & documents\Research\EvoQEM\pdr_qpd_fixed\results
+
+
+(venv) PS E:\Books & documents\Research\EvoQEM\pdr_qpd_fixed> python main_simulation.py
+============================================================
+PDR-QPD v2 — Full Simulation
+Ideal <ZZ> = cos(0.6)·cos(0.8) = 0.57502
+Fidelity bound (Gentle Measurement Lemma): 0.9900
+Shots: 8192 | Trials: 100 | Seed: 42
+============================================================
+[Executor] Using FakeFezV2 noise model.
+  Trial  10/100  |  Noisy: 0.5453  Linear: 0.5674  GPR: 0.5663  Bloch: 0.5783  CPDR: 0.5685  | ETA: 6816s
+  Trial  20/100  |  Noisy: 0.5381  Linear: 0.5651  GPR: 0.5660  Bloch: 0.5655  CPDR: 0.5840  | ETA: 6053s
+  Trial  30/100  |  Noisy: 0.5388  Linear: 0.5620  GPR: 0.5612  Bloch: 0.5646  CPDR: 0.5724  | ETA: 5285s
+  Trial  40/100  |  Noisy: 0.5647  Linear: 0.5929  GPR: 0.5887  Bloch: 0.6005  CPDR: 0.5687  | ETA: 4522s
+  Trial  50/100  |  Noisy: 0.5434  Linear: 0.5739  GPR: 0.5750  Bloch: 0.5735  CPDR: 0.5590  | ETA: 3765s
+  Trial  60/100  |  Noisy: 0.5439  Linear: 0.5694  GPR: 0.5762  Bloch: 0.5712  CPDR: 0.5709  | ETA: 3026s
+  Trial  70/100  |  Noisy: 0.5496  Linear: 0.5775  GPR: 0.5806  Bloch: 0.5785  CPDR: 0.5622  | ETA: 2267s
+  Trial  80/100  |  Noisy: 0.5314  Linear: 0.5627  GPR: 0.5640  Bloch: 0.5572  CPDR: 0.5828  | ETA: 1510s
+  Trial  90/100  |  Noisy: 0.5632  Linear: 0.5972  GPR: 0.5944  Bloch: 0.5991  CPDR: 0.5538  | ETA: 755s
+  Trial 100/100  |  Noisy: 0.5575  Linear: 0.5870  GPR: 0.5846  Bloch: 0.5868  CPDR: 0.5953  | ETA: 0s
+
+All 100 trials complete in 7547.8s
+
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+PDR-QPD v2 — 100-Trial Comparison Summary
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+              Method             Noisy Err              Mit. Err            Frac. Imp.          CI Has Ideal               p-value              ε (mean)             Obs. Fid.
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Standard QPD             0.02702     0.02702       0.00%  False                  nan      0.0379      0.9730
+  PDR Linear               0.02702     0.00727      94.00%  True              1.52e-35      0.0379      0.9927
+  PDR GPR                  0.02702     0.00679      95.00%  True              7.44e-37      0.0299      0.9932
+  PDR Bloch                0.02702     0.00705      93.00%  False             1.13e-32      0.0275      0.9930
+  CPDR                     0.02702     0.00826      94.00%  False             4.34e-34      0.0379      0.9917
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+Generating figures...
+[Figure 1] Distribution plot saved.
+[Figure 2] Noise characterisation saved.
+[Figure 3] R² KDE saved.
+[Figure 4] Fidelity comparison saved.
+[CSV] Trial data saved → results\trial_data.csv
+
+Done. All outputs in: E:\Books & documents\Research\EvoQEM\pdr_qpd_fixed\results
+
+
+(venv) PS E:\Books & documents\Research\EvoQEM\pdr_qpd_fixed> python compare_cpdr_fair.py                                                                               
+=================================================================
+PDR-QPD vs CPDR — Fair Comparison (same perturbation strategy)
+Ideal <ZZ> = 0.57502  |  N=100  |  Shots=8192
+Both methods: δθ ~ U(-0.2, 0.2) near TARGET angles
+Difference:   PDR-QPD uses QPD decomposition + per-variant
+              calibration; CPDR uses full circuit + Ridge
+=================================================================
+[Executor] Using FakeFezV2 noise model.
+  Trial  10/100  |  PDR-QPD=0.00791  CPDR(fair)=0.00675
+  Trial  20/100  |  PDR-QPD=0.00775  CPDR(fair)=0.00953
+  Trial  30/100  |  PDR-QPD=0.00797  CPDR(fair)=0.00926
+  Trial  40/100  |  PDR-QPD=0.00781  CPDR(fair)=0.00919
+  Trial  50/100  |  PDR-QPD=0.00742  CPDR(fair)=0.00875
+  Trial  60/100  |  PDR-QPD=0.00761  CPDR(fair)=0.00877
+  Trial  70/100  |  PDR-QPD=0.00768  CPDR(fair)=0.00898
+  Trial  80/100  |  PDR-QPD=0.00751  CPDR(fair)=0.00926
+  Trial  90/100  |  PDR-QPD=0.00733  CPDR(fair)=0.00892
+  Trial 100/100  |  PDR-QPD=0.00713  CPDR(fair)=0.00927
+=================================================================
+Method                         MAE       Std   CI∋Ideal   Improve
+-----------------------------------------------------------------
+  Standard QPD (Noisy)     0.02778   0.00801          -         -
+  PDR-QPD Linear (ours)    0.00713   0.00576       True     74.3%
+  CPDR Fair (full-circuit)   0.00927   0.00723      False     66.6%
+PDR-QPD beats CPDR: 56% of trials
+Paired t-test: t=2.46, p=1.58e-02
+→ Statistically significant (p < 0.05)
+[Figure] → results\cpdr_fair_comparison.png
+[CSV]    → results\cpdr_fair_comparison.csv

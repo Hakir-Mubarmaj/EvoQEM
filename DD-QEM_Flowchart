@@ -1,0 +1,58 @@
+// Hybrid Quantum Error Mitigation
+digraph "DD-QEM_Flowchart" {
+	rankdir=TB size="10,10" splines=ortho
+	node [fontname=Arial fontsize=12 shape=box style=filled]
+	edge [fontname=Arial fontsize=10]
+	subgraph cluster_0 {
+		color=lightgrey label="Phase A: Input & Analysis" style=dashed
+		Start [label="Target N-Qubit Circuit" fillcolor="#E1F5FE" shape=ellipse]
+		Decision [label="Is Cut across
+Entangling Gate?" fillcolor="#FFF9C4" shape=diamond]
+		Start -> Decision
+	}
+	subgraph cluster_1 {
+		color=grey label="Phase B: Circuit Partitioning"
+		Sep [label="Separable Partitioning
+(Cut Idle Wires)" fillcolor="#C8E6C9"]
+		Frag1 [label="K Independent Fragments" fillcolor="#C8E6C9"]
+		QPD [label="QPD Decomposition
+(Cut CZ/CNOT)" fillcolor="#FFCCBC"]
+		Frag2 [label="4^K Fragment Variants
++ Weights (w)" fillcolor="#FFCCBC"]
+	}
+	subgraph cluster_2 {
+		color=black label="Phase C: Structure-Aware Mitigation (For EACH Fragment)" penwidth=2
+		Calib [label="Smart Calibration
+(Perturbation: θ ± δ)" fillcolor="#D1C4E9" shape=parallelogram]
+		Exec [label="Execute on Real Hardware
+(IBM Fez / SamplerV2)" fillcolor="#B3E5FC"]
+		GPR [label="Train GPR Model
+(RBF + WhiteKernel)" fillcolor="#D1C4E9"]
+		Mitigate [label="Predict & Correct
+Fragment Result" fillcolor="#D1C4E9"]
+		Calib -> Exec [label="Gen Training Data"]
+		Exec -> GPR [label="Noisy Data (X, Y)"]
+		GPR -> Mitigate [label="Learned Noise Map"]
+	}
+	subgraph cluster_3 {
+		color=lightgrey label="Phase D: Global Reconstruction"
+		Prod [label="Tensor Product
+(∏ <Oi>)" fillcolor="#F0F4C3"]
+		Sum [label="Weighted Sum
+(∑ wi <Oi>)" fillcolor="#F0F4C3"]
+		End [label="High-Fidelity
+Expectation Value" fillcolor="#A5D6A7" shape=ellipse style="filled,bold"]
+	}
+	Decision -> Sep [label="No (Weakly Coupled)"]
+	Decision -> QPD [label="Yes (Strongly Coupled)"]
+	Sep -> Frag1
+	QPD -> Frag2
+	Frag1 -> Calib
+	Frag2 -> Calib
+	Frag1 -> Mitigate [style=dashed]
+	Frag2 -> Mitigate [style=dashed]
+	Mitigate -> Prod [label="If Separable"]
+	Mitigate -> Sum [label="If QPD"]
+	Prod -> End
+	Sum -> End
+}

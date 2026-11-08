@@ -1,0 +1,159 @@
+=== Starting PDR-QPD (Perturbation Data Regression) Pipeline ===
+
+Methodology: QPD Cutting + Local Linear Regression on Perturbed Data
+
+   [Init] Connecting to IBM Quantum Service...
+management.get:WARNING:2025-12-30 16:43:55,013: Loading default saved account
+qiskit_runtime_service.__init__:WARNING:2025-12-30 16:44:02,581: Instance was not set at service instantiation. Free and trial plan instances will be prioritized. Based on the following filters: (tags: None, region: us-east, eu-de), and available plans: (open), the available account instances are: open-instance. If you need a specific instance set it explicitly either by using a saved account with a saved default instance or passing it in directly to QiskitRuntimeService().        
+qiskit_runtime_service.backends:WARNING:2025-12-30 16:44:02,582: Using instance: open-instance, plan: open
+   [Success] Connected to Real Backend: ibm_fez
+-> Circuit Prepared. Applying QPD decomposition...
+-> Generated 4 QPD variants.
+
+--- Processing Variant 1 (Weight: 0.5) ---
+   -> Generating perturbed calibration circuits...
+Generating 30 smart calibration variants...
+   -> Running calibration data on Backend...
+   -> Fitting Local Linear Model (PDR)...
+      [Model] Slope: 1.0407, Intercept: -0.0128
+   -> Running actual variant...
+      [Result] Raw: 0.5693 | Mitigated: 0.5796
+
+--- Processing Variant 2 (Weight: 0.5) ---
+   -> Generating perturbed calibration circuits...
+Generating 30 smart calibration variants...
+   -> Running calibration data on Backend...
+   -> Fitting Local Linear Model (PDR)...
+      [Model] Slope: 1.0313, Intercept: -0.0097
+   -> Running actual variant...
+      [Result] Raw: 0.5580 | Mitigated: 0.5657
+
+--- Processing Variant 3 (Weight: 0.5) ---
+   -> Generating perturbed calibration circuits...
+Generating 30 smart calibration variants...
+   -> Running calibration data on Backend...
+   -> Fitting Local Linear Model (PDR)...
+      [Model] Slope: 1.0268, Intercept: -0.0054
+   -> Running actual variant...
+      [Result] Raw: 0.5610 | Mitigated: 0.5706
+
+--- Processing Variant 4 (Weight: -0.5) ---
+   -> Generating perturbed calibration circuits...
+Generating 30 smart calibration variants...
+   -> Running calibration data on Backend...
+   -> Fitting Local Linear Model (PDR)...
+      [Model] Slope: 1.0285, Intercept: -0.0100
+   -> Running actual variant...
+      [Result] Raw: 0.5770 | Mitigated: 0.5835
+
+>>> Reconstructing Global Results <<<
+==================================================
+True Ideal Target:              0.57502
+----------------------------------------
+Standard QPD (Noisy):           0.55563
+Error (Noisy):                  0.01939
+----------------------------------------
+PDR-QPD (Mitigated):            0.56621
+Error (Mitigated):              0.00881
+==================================================
+
+Generating Regression Plot for Variant 4...
+
+============================================================
+STATISTICAL ANALYSIS REPORT
+============================================================
+[Standard QPD (Noisy)]
+  Mean:       0.55664
+  Std Dev:    0.02236
+  95% CI:     [0.55220, 0.56107]
+  Abs Error:  0.01838
+----------------------------------------
+[PDR-QPD (Mitigated)]
+  Mean:       0.57364
+  Std Dev:    0.02166
+  95% CI:     [0.56934, 0.57793]
+  Abs Error:  0.00138
+----------------------------------------
+Net Error Reduction: 0.01700
+N runs: 100
+Mean raw err: 0.021511484422511468 ± 0.019338560702963175
+Mean mit err: 0.015587754092314183 ± 0.015025998984256411
+Mean improvement (raw_err - mit_err): 0.005923730330197281
+Fraction of runs improved: 0.65
+Paired t-test on errors: t = -4.5047, p = 1.821e-05
+Bootstrap 95% CI for mean improvement: (0.0033687950327484645, 0.008438699874732341)
+
+============================================================
+STATISTICAL ANALYSIS REPORT
+============================================================
+[Standard QPD (Noisy)]
+  Mean:       0.55277
+  Std Dev:    0.02782
+  95% CI:     [0.54725, 0.55829]
+  Abs Error:  0.02225
+----------------------------------------
+[PDR-QPD (Mitigated)]
+  Mean:       0.56965
+  Std Dev:    0.02694
+  95% CI:     [0.56431, 0.57500]
+  Abs Error:  0.00536
+----------------------------------------
+Net Error Reduction: 0.01688
+N runs: 100
+Mean raw err: 0.02596680225951883 ± 0.02435240809708825
+Mean mit err: 0.019541057021960836 ± 0.019209632107762557
+Mean improvement (raw_err - mit_err): 0.0064257452375579924
+Fraction of runs improved: 0.67
+Paired t-test on errors: t = -4.5177, p = 1.731e-05
+Bootstrap 95% CI for mean improvement: (0.003613647931601271, 0.009099059208048805)
+
+
+gpr gpr
+============================================================
+STATISTICAL ANALYSIS REPORT
+============================================================
+[Standard QPD (Noisy)]
+  Mean:       0.55729
+  Std Dev:    0.02460
+  95% CI:     [0.55241, 0.56217]
+  Abs Error:  0.01772
+----------------------------------------
+[PDR-QPD (Mitigated)]
+  Mean:       0.57509
+  Std Dev:    0.02449
+  95% CI:     [0.57024, 0.57995]
+  Abs Error:  0.00008
+----------------------------------------
+Net Error Reduction: 0.01765
+N runs: 100
+Mean raw err: 0.023368965052104 ± 0.01925617126802119
+Mean mit err: 0.017695396895351302 ± 0.01683298987622706
+Mean improvement (raw_err - mit_err): 0.005673568156752691
+Fraction of runs improved: 0.68
+Paired t-test on errors: t = -3.8825, p = 0.0001866
+Bootstrap 95% CI for mean improvement: (0.0028412003927182016, 0.008465784182472928)
+
+
+Summary:
+Noisy err: mean=0.113018 ± 0.002764 (n=30)
+CPDR err: mean=0.023770 ± 0.006190 (n=30)
+QPDR err: mean=0.043180 ± 0.012927 (n=30)
+paired t (noisy vs qm): TtestResult(statistic=10.82643431511498, pvalue=1.0571346838563053e-11, df=29)
+paired t (noisy vs cpdr): TtestResult(statistic=29.795308680006972, pvalue=2.664296005861052e-23, df=29)
+paired t (cpdr vs qpdr): TtestResult(statistic=-2.8218310050715107, pvalue=0.008533143976607533, df=29)
+Frac improved (QPDR vs noisy): 1.0
+Frac improved (CPDR vs noisy): 1.0
+Saved paired_results.csv
+
+[Noisy]
+ Mean=0.57360, Std=0.01021, 95% CI=[0.57158,0.57563]
+ Abs error=0.00141
+
+[CPDR]
+ Mean=0.57846, Std=0.00518, 95% CI=[0.57743,0.57949]
+ Abs error=0.00344
+
+Paired t-test: -4.809788345004255 5.408048351667065e-06
+Frac improved: 0.67
+Bootstrap CI: (0.002049531939208891, 0.0048267326856425005)
+Saved figure: csv\cpdr_stat_summary_expectation.png

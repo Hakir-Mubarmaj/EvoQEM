@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDR-QPD Thesis Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. THE SETUP - Professional Light Theme */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f5f9; /* Light Slate Background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Slide Container */
+.slide-container {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 720px; /* Standard 16:9 Aspect Ratio for Preso */
+  width: 1280px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #cbd5e1;
+}
+
+/* 2. TYPOGRAPHY & COLORS */
+:root {
+  --primary-color: #0B3D91; /* Dark Blue Header */
+  --accent-color: #008080; /* Teal Accent */
+  --text-main: #333333; /* Charcoal */
+  --text-light: #555555;
+  --bg-white: #ffffff;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Roboto', sans-serif;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+p, li, td, th {
+  color: var(--text-main);
+  font-size: 22px; /* Body text size */
+  line-height: 1.5;
+}
+
+/* 3. LAYOUT UTILITIES */
+.header-bar {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-bar h2 {
+  color: white;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.content-area {
+  padding: 40px 60px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  height: 100%;
+}
+
+.bullet-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bullet-list li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.bullet-list li::before {
+  content: '•';
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: -5px;
+}
+
+/* 4. SPECIFIC SLIDE STYLES */
+
+/* Title Slide */
+.title-slide {
+  text-align: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.title-slide h1 {
+  font-size: 54px;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.title-slide .meta-info {
+  font-size: 24px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+/* Outline Slide */
+.outline-list li {
+  font-size: 28px;
+  margin-bottom: 25px;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 20px;
+  background: #f8fafc;
+  padding: 15px 20px;
+}
+
+.outline-list li::before { content: none; }
+
+/* Image Containers */
+.figure-container {
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+.figure-container img {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+}
+
+.figure-caption {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 20px;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+
+/* Math */
+math {
+  font-family: 'Times New Roman', serif;
+  font-size: 24px;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 60px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #94a3b8;
+  background: white;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title Slide -->
+<div class="slide-container title-slide content-area">
+    <div style="margin-bottom: 40px;">
+        <i class="fa-solid fa-university" style="font-size: 80px; color: var(--primary-color);"></i>
+        <!-- Place University Logo Here -->
+    </div>
+    <h1>A Localized, Linear Learning Error Mitigation Approach Using QPD for NISQ Devices</h1>
+    
+    <div style="margin-top: 40px;">
+        <p class="meta-info"><strong>Presenter:</strong> Tanvir Ahmed</p>
+        <p class="meta-info"><strong>Degree:</strong> Bachelor of Science in Computer Science and Engineering</p>
+        <p class="meta-info"><strong>Supervisor:</strong> Dr. Rahat Hossain Faisal</p>
+        <p class="meta-info">University of Barisal</p>
+        <p class="meta-info" style="margin-top: 20px; font-size: 18px;">6 January 2026</p>
+    </div>
+
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>1 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 2: Outline / Roadmap -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Presentation Outline</h2>
+    </div>
+    <div class="content-area">
+        <ul class="bullet-list outline-list">
+            <li>Motivation</li>
+            <li>Background (NISQ & QEM)</li>
+            <li>Problem Statement & Goals</li>
+            <li>Methodology (PDR-QPD Framework)</li>
+            <li>Experimental Setup</li>
+            <li>Results (Simulated & Real Hardware)</li>
+            <li>Conclusion & Future Work</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>2 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 3: Motivation -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Motivation: Why this problem?</h2>
+    </div>
+    <div class="content-area two-column">
+        <div class="bullet-list">
+            <ul>
+                <li><strong>NISQ Reality:</strong> Current quantum devices are noisy; deep circuits fail due to decoherence and gate errors.</li>
+                <li><strong>Scalability Issues:</strong> Existing mitigation methods like ZNE (Zero-Noise Extrapolation) require increasing circuit depth, which scales poorly.</li>
+                <li><strong>The Need:</strong> We need a resource-efficient mitigation strategy specifically designed for distributed/cut circuits (QPD).</li>
+            </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+            <i class="fa-solid fa-microchip" style="font-size: 80px; color: var(--text-light);"></i>
+            <i class="fa-solid fa-arrow-down" style="font-size: 40px; color: var(--accent-color);"></i>
+            <i class="fa-solid fa-scissors" style="font-size: 80px; color: var(--text-light);"></i>
+            <p style="text-align: center; font-style: italic;">Noise + Cuts = Need for Correction</p>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>3 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 4: Quick Background -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Background: NISQ & QEM</h2>
+    </div>
+    <div class="content-area two-column">
+        <div class="bullet-list">
+            <ul>
+                <li><strong>NISQ (Noisy Intermediate-Scale Quantum):</strong> 50-100 qubits, no fault tolerance yet.</li>
+                <li><strong>Why Errors Matter:</strong> Noise (decoherence, crosstalk) corrupts computation results.</li>
+                <li><strong>Common QEM Methods:</strong>
+                    <ul>
+                        <li><span style="color: var(--accent-color);">ZNE:</span> Extrapolates to zero noise (Drawback: amplifies variance).</li>
+                        <li><span style="color: var(--accent-color);">PEC:</span> Probabilistic Cancellation (Drawback: high sampling cost).</li>
+                        <li><span style="color: var(--accent-color);">Learning-based:</span> Neural Networks (Drawback: high training cost).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="figure-container">
+             <img src="https://i.ibb.co.com/5X5R3KbF/tax.jpg" alt="QEM Taxonomy">
+             <div class="figure-caption">Overview of Quantum Error Mitigation Strategies</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>4 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 5: Problem Statement -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Problem Statement & Goals</h2>
+    </div>
+    <div class="content-area">
+        <div style="background: #e0f2f1; padding: 40px; border-left: 10px solid var(--accent-color); border-radius: 4px;">
+            <h3>The Problem</h3>
+            <p style="margin-bottom: 30px;">Running large quantum circuits via cutting (QPD) enables execution on smaller devices, but the reconstructed fragments still suffer from inherent hardware noise.</p>
+            
+            <h3>Research Objective</h3>
+            <p>To develop a <strong>localized</strong>, <strong>low-sample</strong> error mitigation framework specifically for QPD fragments that does not increase circuit depth.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>5 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 6: High-Level Approach -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>High-Level Approach: PDR-QPD Pipeline</h2>
+    </div>
+    <div class="content-area">
+        <div class="figure-container" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+            <img src="https://i.ibb.co.com/n8chc7RM/pdr-qpd-methodology-no-title-large-font.png" alt="Figure 3.1: PDR-QPD Framework Schematic">
+            <div class="figure-caption"><strong>Figure 3.1:</strong> The PDR-QPD Pipeline: Decomposition &rarr; Calibration (Perturbation) &rarr; Local Regression &rarr; Reconstruction.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>6 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 7: QPD Details -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Method: Quasi-Probability Decomposition (QPD)</h2>
+    </div>
+    <div class="content-area two-column">
+        <div>
+            <p><strong>Decomposition of CZ Gate:</strong></p>
+            <p>Non-local gates are broken into local tensor products to fit hardware constraints.</p>
+            <div style="background: #fff; padding: 20px; border: 1px solid #ccc; margin: 20px 0;">
+                <math display="block">
+                    <mi>CZ</mi> <mo>=</mo> 
+                    <mfrac><mn>1</mn><mn>2</mn></mfrac> <mo>(</mo> <mi>I</mi> <mo>⊗</mo> <mi>I</mi> <mo>)</mo>
+                    <mo>+</mo> <mfrac><mn>1</mn><mn>2</mn></mfrac> <mo>(</mo> <mi>Z</mi> <mo>⊗</mo> <mi>I</mi> <mo>)</mo>
+                    <mo>+</mo> <mfrac><mn>1</mn><mn>2</mn></mfrac> <mo>(</mo> <mi>I</mi> <mo>⊗</mo> <mi>Z</mi> <mo>)</mo>
+                    <mo>−</mo> <mfrac><mn>1</mn><mn>2</mn></mfrac> <mo>(</mo> <mi>Z</mi> <mo>⊗</mo> <mi>Z</mi> <mo>)</mo>
+                </math>
+            </div>
+            <p><strong>4 Variants:</strong></p>
+            <ul class="bullet-list">
+                <li>Variant 1: I &otimes; I</li>
+                <li>Variant 2: Z &otimes; I</li>
+                <li>Variant 3: I &otimes; Z</li>
+                <li>Variant 4: Z &otimes; Z</li>
+            </ul>
+        </div>
+        <div class="figure-container">
+            <img src="https://i.ibb.co.com/DPR4p1SC/QPD-Variants-circuit-ideal-Bloch-vectors-per-variant.png" alt="Figure 3.2: QPD Variants">
+            <div class="figure-caption"><strong>Figure 3.2:</strong> Local circuit variants derived from QPD.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>7 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 8: Calibration -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Calibration: Structure-Aware Perturbation</h2>
+    </div>
+    <div class="content-area two-column">
+        <div class="bullet-list">
+            <h3>What we do:</h3>
+            <ul>
+                <li>Apply small perturbations (&delta;&theta;) to rotation angles.</li>
+                <li>Range: <strong>[-0.2, 0.2]</strong>.</li>
+                <li>Generate <strong>K</strong> calibration circuits.</li>
+            </ul>
+            <h3>Why?</h3>
+            <ul>
+                <li>Preserves circuit structure (same equivalence class).</li>
+                <li>Avoids depth blow-up (unlike ZNE).</li>
+                <li>Captures local noise profile accurately.</li>
+            </ul>
+        </div>
+        <div class="figure-container">
+            <img src="https://i.ibb.co.com/Xx7F00w7/Selected-perturbed-calibration-circuits-Bloch-vectors-ideal-states.png" alt="Figure 3.3: Bloch Sphere Perturbation">
+            <div class="figure-caption"><strong>Figure 3.3:</strong> Structure-aware perturbation samples on the Bloch sphere.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>8 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 9: Local Regression Model -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Method: Local Linear Regression (PDR)</h2>
+    </div>
+    <div class="content-area two-column">
+        <div>
+            <ul class="bullet-list">
+                <li><strong>Training Data:</strong> Pairs of (E<sub>noisy</sub>, E<sub>ideal</sub>).</li>
+                <li><strong>Model:</strong> Fit a linear model per QPD variant.</li>
+                <li><strong>Estimator:</strong> Theil-Sen (robust to outliers) + OLS fallback.</li>
+                <li><strong>Reconstruction:</strong></li>
+            </ul>
+            <div style="background: #fff; padding: 15px; border: 1px solid #ccc; margin-top: 20px;">
+                <math display="block">
+                    <msub><mrow><mo>⟨</mo><mi>O</mi><mo>⟩</mo></mrow><mi>mit</mi></msub>
+                    <mo>=</mo>
+                    <munder><mo>∑</mo><mi>i</mi></munder> <msub><mi>w</mi><mi>i</mi></msub> <mo>·</mo> <msub><mi>f</mi><mi>i</mi></msub> <mo>(</mo> <msubsup><mi>E</mi><mi>raw</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msubsup> <mo>)</mo>
+                </math>
+            </div>
+        </div>
+        <div class="figure-container">
+            <img src="https://i.ibb.co.com/Q7SNSgYW/real-qpu.png" alt="Figure 3.4: Regression Fit">
+            <div class="figure-caption"><strong>Figure 3.4:</strong> Linear regression fit showing Noisy vs Ideal mapping.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>9 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 10: Experimental Setup -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Experimental Setup</h2>
+    </div>
+    <div class="content-area">
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td><strong>Simulated Backend</strong></td>
+                <td>FakeFez (Noisy simulator of IBM Fez)</td>
+            </tr>
+            <tr>
+                <td><strong>Real Hardware</strong></td>
+                <td>IBM Fez (Superconducting Transmon)</td>
+            </tr>
+            <tr>
+                <td><strong>Metric</strong></td>
+                <td>Expectation Value ⟨ZZ⟩</td>
+            </tr>
+            <tr>
+                <td><strong>Trials</strong></td>
+                <td>100 statistical trials</td>
+            </tr>
+            <tr>
+                <td><strong>Calibration Samples (K)</strong></td>
+                <td>50 samples per variant</td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>10 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 11: Quantitative Results (Simulated) -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Results: Simulated (FakeFez)</h2>
+    </div>
+    <div class="content-area two-column">
+        <div>
+            <h3>Key Findings:</h3>
+            <ul class="bullet-list">
+                <li><strong>Linearity:</strong> Median R² > 0.90 across all variants (Linear assumption holds).</li>
+                <li><strong>Error Reduction:</strong>
+                    <ul>
+                        <li>Unmitigated Error: 0.0184</li>
+                        <li>Mitigated Error: <strong>0.0014</strong></li>
+                        <li><strong>92.5% Reduction</strong></li>
+                    </ul>
+                </li>
+                <li><strong>Statistical Significance:</strong> 95% CI includes the true ideal value (p < 0.05).</li>
+            </ul>
+        </div>
+        <div class="figure-container">
+            <img src="https://i.ibb.co.com/prNKGsnk/100-trial.png" alt="Figure 4.6: Distribution Comparison">
+            <div class="figure-caption"><strong>Figure 4.6:</strong> Distribution of expectation values before and after mitigation.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>11 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 12: Real Hardware Results -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Results: Real Hardware (IBM Fez)</h2>
+    </div>
+    <div class="content-area two-column">
+        <div>
+            <h3>Performance on IBM Fez:</h3>
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>Value ⟨ZZ⟩</th>
+                    <th>Abs. Error</th>
+                </tr>
+                <tr>
+                    <td>True Ideal</td>
+                    <td>0.57502</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Standard QPD</td>
+                    <td>0.55563</td>
+                    <td>0.01939</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; color: var(--primary-color);">PDR-QPD</td>
+                    <td style="font-weight: bold; color: var(--primary-color);">0.56621</td>
+                    <td style="font-weight: bold; color: var(--primary-color);">0.00881</td>
+                </tr>
+            </table>
+            <div style="margin-top: 20px; font-size: 28px; color: var(--accent-color); font-weight: bold; text-align: center;">
+                ≈ 54.5% Error Reduction
+            </div>
+        </div>
+        <div class="figure-container">
+            <img src="https://i.ibb.co.com/0jhC6Jwt/global-reconstruction-pdr-qpd.png" alt="Figure 4.7: Hardware Comparison">
+            <div class="figure-caption"><strong>Figure 4.7:</strong> Comparison of Standard QPD vs PDR-QPD on real hardware.</div>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>12 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 13: Interpretation & Discussion -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Interpretation & Discussion</h2>
+    </div>
+    <div class="content-area">
+        <ul class="bullet-list">
+            <li><strong>Validity of Linearity:</strong> The localized linear model works effectively across different QPD variants, even on real hardware.</li>
+            <li><strong>Adaptability:</strong> The model successfully adapted to different noise regimes (Depolarizing in simulation vs. Coherent over-rotation on IBM Fez).</li>
+            <li><strong>Cost/Benefit Analysis:</strong>
+                <ul>
+                    <li>Benefit: Significant reduction in bias (Systematic error).</li>
+                    <li>Cost: QPD sampling overhead remains (exponential with cuts), plus linear calibration overhead.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>13 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 14: Limitations & Future Work -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Limitations & Future Work</h2>
+    </div>
+    <div class="content-area two-column">
+        <div>
+            <h3>Current Limitations</h3>
+            <ul class="bullet-list">
+                <li><strong>Sampling Overhead:</strong> Scales exponentially with the number of cuts.</li>
+                <li><strong>Linear Assumption:</strong> May break down under strong non-linear noise regimes.</li>
+                <li><strong>Calibration Cost:</strong> Requires K runs for every circuit fragment.</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Future Directions</h3>
+            <ul class="bullet-list">
+                <li><strong>Advanced Models:</strong> Explore Gaussian Process Regression (GPR) or Bayesian models for non-linear noise.</li>
+                <li><strong>Dynamic Cutting:</strong> Optimize cut locations to minimize overhead.</li>
+                <li><strong>Applications:</strong> Test on VQE and QAOA algorithms for larger instances.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>14 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 15: Conclusion -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Conclusion</h2>
+    </div>
+    <div class="content-area">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fa-solid fa-check-circle" style="font-size: 60px; color: var(--accent-color);"></i>
+        </div>
+        <ul class="bullet-list" style="font-size: 26px;">
+            <li><strong>PDR-QPD Framework:</strong> Combines structure-aware calibration with local linear correction and QPD reconstruction.</li>
+            <li><strong>Validation:</strong> Successfully validated on both FakeFez simulator and IBM Fez quantum processor.</li>
+            <li><strong>Impact:</strong> Achieved <strong>54.5%</strong> error reduction on hardware, proving that localized linear learning is a viable path for NISQ error mitigation.</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>15 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 16: Acknowledgements -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Acknowledgements & Questions</h2>
+    </div>
+    <div class="content-area" style="text-align: center;">
+        <h3>Acknowledgements</h3>
+        <p>I would like to thank my supervisor, <strong>Dr. Rahat Hossain Faisal</strong>, for their guidance, and the Department of CSE, University of Barisal.</p>
+        
+        <div style="margin-top: 60px;">
+            <h1 style="color: var(--primary-color); font-size: 80px;">Thank You!</h1>
+            <p style="font-size: 32px; color: var(--text-light); margin-top: 20px;">Questions?</p>
+        </div>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>16 / 17</span>
+    </div>
+</div>
+
+<!-- Slide 17: Backup / Appendix -->
+<div class="slide-container">
+    <div class="header-bar">
+        <h2>Appendix: Regression Statistics</h2>
+    </div>
+    <div class="content-area">
+        <p><strong>Table 4.1:</strong> Statistical summary of regression parameters (100 trials).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variant</th>
+                    <th>Slope (m)</th>
+                    <th>Intercept (c)</th>
+                    <th>R² Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Variant 1</td>
+                    <td>0.9566 ± 0.0420</td>
+                    <td>0.0409 ± 0.0244</td>
+                    <td>0.9063 ± 0.0431</td>
+                </tr>
+                <tr>
+                    <td>Variant 2</td>
+                    <td>0.9542 ± 0.0463</td>
+                    <td>0.0428 ± 0.0270</td>
+                    <td>0.8986 ± 0.0451</td>
+                </tr>
+                <tr>
+                    <td>Variant 3</td>
+                    <td>0.9463 ± 0.0459</td>
+                    <td>0.0468 ± 0.0269</td>
+                    <td>0.9055 ± 0.0396</td>
+                </tr>
+                <tr>
+                    <td>Variant 4</td>
+                    <td>0.9426 ± 0.0432</td>
+                    <td>0.0490 ± 0.0255</td>
+                    <td>0.9010 ± 0.0478</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer">
+        <span>University of Barisal</span>
+        <span>17 / 17</span>
+    </div>
+</div>
+
+</body>
+</html>

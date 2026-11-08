@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6x12 Bathroom 3D Layout</title>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f0f0; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 300px;
+            z-index: 100;
+        }
+        h2 { margin: 0 0 10px 0; font-size: 18px; color: #333; }
+        p { margin: 5px 0; font-size: 14px; color: #555; }
+        .legend-item { display: flex; align-items: center; margin-bottom: 5px; }
+        .color-box { width: 15px; height: 15px; margin-right: 10px; border-radius: 3px; border: 1px solid #ccc; }
+        #controls-help {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            pointer-events: none;
+        }
+        .label {
+            color: #fff;
+            font-family: sans-serif;
+            padding: 2px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none; 
+            /* Label rendering logic handled within canvas usually, simplified here */
+        }
+    </style>
+    <!-- Load Three.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/TextGeometry.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FontLoader.js"></script>
+</head>
+<body>
+
+    
+    <script>
+        // --- 1. SETUP SCENE ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xe0e0e0);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // Position camera for Birds-eye view (High Y, slight Z angle)
+        camera.position.set(0, 18, 10);
+        
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.target.set(0, 0, 0);
+
+        // --- 2. LIGHTING ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.7);
+        dirLight.position.set(5, 10, 5);
+        dirLight.castShadow = true;
+        dirLight.shadow.mapSize.width = 1024;
+        dirLight.shadow.mapSize.height = 1024;
+        scene.add(dirLight);
+
+        // --- 3. CONSTANTS (1 unit = 1 foot) ---
+        const ROOM_WIDTH = 6;
+        const ROOM_LENGTH = 12;
+        const WALL_HEIGHT = 5; // Low walls to see inside easily
+        const WALL_THICKNESS = 0.5;
+
+        // --- 4. BUILD ROOM ---
+        
+        // Material
+        const wallMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+        const floorMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc }); // Grey tiles look
+        
+        // Floor
+        const floorGeo = new THREE.PlaneGeometry(ROOM_WIDTH, ROOM_LENGTH);
+        const floor = new THREE.Mesh(floorGeo, floorMaterial);
+        floor.rotation.x = -Math.PI / 2;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        // Grid Helper on floor for measurement reference (1 box = 1 foot)
+        const gridHelper = new THREE.GridHelper(Math.max(ROOM_WIDTH, ROOM_LENGTH) * 2, Math.max(ROOM_WIDTH, ROOM_LENGTH) * 2, 0xbbbbbb, 0xdddddd);
+        gridHelper.position.y = 0.01;
+        // scene.add(gridHelper); // Optional, kept clean for now
+
+        // Walls Group
+        const wallsGroup = new THREE.Group();
+        scene.add(wallsGroup);
+
+        // Helper to create wall segment
+        function createWall(w, h, d, x, y, z, color = 0xffffff) {
+            const geo = new THREE.BoxGeometry(w, h, d);
+            const mat = new THREE.MeshStandardMaterial({ color: color });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            wallsGroup.add(mesh);
+            return mesh;
+        }
+
+        // Coordinate System: 
+        // 0,0 is center of floor. 
+        // Width (X) spans -3 to +3. 
+        // Length (Z) spans -6 to +6.
+
+        // 1. Back Wall (Ventilation Side - North) [Z = -6]
+        // Full 6ft width
+        createWall(ROOM_WIDTH + WALL_THICKNESS*2, WALL_HEIGHT, WALL_THICKNESS, 0, WALL_HEIGHT/2, -ROOM_LENGTH/2 - WALL_THICKNESS/2);
+
+        // ** Ventilation Window Hole simulation ** // Just a darker box on the wall to represent window high up
+        const ventGeo = new THREE.BoxGeometry(2, 1.5, 0.2);
+        const ventMat = new THREE.MeshStandardMaterial({ color: 0x87CEEB }); // Sky blue
+        const vent = new THREE.Mesh(ventGeo, ventMat);
+        vent.position.set(0, 3.5, -ROOM_LENGTH/2 + 0.1); // High up on back wall
+        scene.add(vent);
+
+
+        // 2. Front Wall (South) [Z = +6]
+        // Full 6ft width
+        createWall(ROOM_WIDTH + WALL_THICKNESS*2, WALL_HEIGHT, WALL_THICKNESS, 0, WALL_HEIGHT/2, ROOM_LENGTH/2 + WALL_THICKNESS/2);
+
+        // 3. Right Wall (Solid Long Wall) [X = +3]
+        // Full 12ft length
+        createWall(WALL_THICKNESS, WALL_HEIGHT, ROOM_LENGTH, ROOM_WIDTH/2 + WALL_THICKNESS/2, WALL_HEIGHT/2, 0);
+
+        // 4. Left Wall (Door Wall) [X = -3]
+        // LOGIC: 3ft Wall -> 3ft Door -> 6ft Wall
+        // Total 12ft. Starts at Z = -6 (Back) to Z = +6 (Front).
+        // Let's assume the 6ft part is towards the "Dry" side (Front) or "Wet" side (Back)?
+        // User said: "Door middleish, one side 3ft, one side 6ft". 
+        // Usually, avoid door opening directly onto toilet.
+        // Configuration: 
+        // Segment A (Back/Wet side): 3ft Wall. (Z: -6 to -3)
+        // Segment B (Door Gap): 3ft Gap. (Z: -3 to 0)
+        // Segment C (Front/Dry side): 6ft Wall. (Z: 0 to +6)
+
+        // Wall Segment A (3ft long)
+        createWall(WALL_THICKNESS, WALL_HEIGHT, 3, -ROOM_WIDTH/2 - WALL_THICKNESS/2, WALL_HEIGHT/2, 4.5); // Center of this segment is at -4.5
+        
+        // Wall Segment C (6ft long)
+        createWall(WALL_THICKNESS, WALL_HEIGHT, 6, -ROOM_WIDTH/2 - WALL_THICKNESS/2, WALL_HEIGHT/2, -3); // Center of this segment is at +3
+
+        // Door (Open representation)
+        // A thin brownish plane representing the door open inwards
+        const doorGeo = new THREE.BoxGeometry(0.2, 4.5, 3);
+        const doorMat = new THREE.MeshStandardMaterial({ color: 0x8d6e63 });
+        const door = new THREE.Mesh(doorGeo, doorMat);
+        // Place at hinge (Z = -3), rotated 90 degrees to show "Open"
+        door.position.set(-ROOM_WIDTH/2 + 1.5, 2.25, 3); 
+        door.rotation.y = Math.PI / 2; 
+        scene.add(door);
+
+
+        // --- 5. INTERIOR FIXTURES ---
+
+        // A. SHOWER AREA (Back Right Corner)
+        // Based on "other corner is shower out pipe".
+        // Back Right = X > 0, Z < 0
+        const showerBaseGeo = new THREE.BoxGeometry(2.8, 0.1, 2.8);
+        const showerBaseMat = new THREE.MeshStandardMaterial({ color: 0x8bc34a }); // Greenish tint for wet area visual
+        const showerBase = new THREE.Mesh(showerBaseGeo, showerBaseMat);
+        showerBase.position.set(1.5, 0.06, -4.5); // Top Right Corner
+        scene.add(showerBase);
+
+        // Glass Partition
+        const glassGeo = new THREE.BoxGeometry(0.1, 4, 3);
+        const glassMat = new THREE.MeshStandardMaterial({ color: 0xaaddff, transparent: true, opacity: 0.3 });
+        const glassPart = new THREE.Mesh(glassGeo, glassMat);
+        glassPart.position.set(0, 2, -4.5); // Separates Left (Commode) from Right (Shower)
+        scene.add(glassPart);
+
+        // Shower Head (Simulated)
+        const sHeadGeo = new THREE.CylinderGeometry(0.2, 0.2, 0.1);
+        const sHead = new THREE.Mesh(sHeadGeo, new THREE.MeshStandardMaterial({color: 0x555555}));
+        sHead.rotation.x = Math.PI/2;
+        sHead.position.set(1.5, 3.5, -5.9);
+        scene.add(sHead);
+
+
+        // B. COMMODE (Back Left / Center)
+        // "Right under ventilation". Ventilation is usually centered on the short wall.
+        // But if shower is in corner, Commode is next to it.
+        const commodeGroup = new THREE.Group();
+        
+        // Tank
+        const tankGeo = new THREE.BoxGeometry(1.5, 1.2, 0.8);
+        const ceramicMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+        const tank = new THREE.Mesh(tankGeo, ceramicMat);
+        tank.position.set(0, 1.5, -5.5);
+        
+        // Seat
+        const seatGeo = new THREE.CylinderGeometry(0.7, 0.6, 1.2);
+        const seat = new THREE.Mesh(seatGeo, ceramicMat);
+        seat.position.set(0, 0.6, -4.8);
+        
+        commodeGroup.add(tank);
+        commodeGroup.add(seat);
+        
+        // Shift Commode to the Left of the glass partition (-1.5 X)
+        commodeGroup.position.set(-1.5, 0, 0); 
+        scene.add(commodeGroup);
+
+
+        // C. BASIN / VANITY (Dry Zone)
+        // Best place: Long solid wall (Right side), near the dry area.
+        const vanityGroup = new THREE.Group();
+        
+        // Cabinet
+        const cabGeo = new THREE.BoxGeometry(1.5, 1.5, 2.5); // Depth, Height, Width
+        const woodMat = new THREE.MeshStandardMaterial({ color: 0x8d6e63 });
+        const cabinet = new THREE.Mesh(cabGeo, woodMat);
+        cabinet.position.set(2.2, 0.75, 1); // X=Near right wall, Z=Positive (Dry side)
+        
+        // Sink
+        const sinkGeo = new THREE.BoxGeometry(1.2, 0.2, 1.5);
+        const sink = new THREE.Mesh(sinkGeo, ceramicMat);
+        sink.position.set(2.2, 1.55, 1);
+        
+        // Mirror
+        const mirrorGeo = new THREE.BoxGeometry(0.1, 2.5, 2);
+        const mirrorMat = new THREE.MeshStandardMaterial({ color: 0xddeeff, metalness: 0.9, roughness: 0.1 });
+        const mirror = new THREE.Mesh(mirrorGeo, mirrorMat);
+        mirror.position.set(2.9, 2.8, 1); // On the wall
+        
+        vanityGroup.add(cabinet);
+        vanityGroup.add(sink);
+        vanityGroup.add(mirror);
+        scene.add(vanityGroup);
+
+        // --- 6. TEXT LABELS (Simple Sprites) ---
+        function createLabel(text, x, y, z) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 256;
+            canvas.height = 128;
+            context.font = "Bold 30px Arial";
+            context.fillStyle = "rgba(0,0,0,1)";
+            context.textAlign = "center";
+            context.fillText(text, 128, 64);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+            const sprite = new THREE.Sprite(spriteMaterial);
+            sprite.scale.set(4, 2, 1);
+            sprite.position.set(x, y, z);
+            scene.add(sprite);
+        }
+
+        createLabel("Ventilation", 0, 4.5, -6);
+        createLabel("Shower", 1.5, 2, -4.5);
+        createLabel("Commode", -1.5, 2.5, -5);
+        createLabel("Basin", 1.5, 2.5, 1);
+        createLabel("Entrance", -3.5, 1, 1.5);
+
+
+        // --- 7. ANIMATION LOOP ---
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="238.153125pt" height="122.946594pt" viewBox="0 0 238.153125 122.946594" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-25T17:00:07.554111</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 122.946594 
+L 238.153125 122.946594 
+L 238.153125 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 46.415625 96.21825 
+L 236.713125 96.21825 
+L 236.713125 24.23625 
+L 46.415625 24.23625 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 55.065511 641.224821 
+L 92.378747 641.224821 
+L 92.378747 49.923541 
+L 55.065511 49.923541 
+z
+" clip-path="url(#p61c5aa9ccd)" style="fill: #888888; opacity: 0.88"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 122.907757 641.224821 
+L 160.220993 641.224821 
+L 160.220993 69.862555 
+L 122.907757 69.862555 
+z
+" clip-path="url(#p61c5aa9ccd)" style="fill: #e07070; opacity: 0.88"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 190.750003 641.224821 
+L 228.063239 641.224821 
+L 228.063239 58.98299 
+L 190.750003 58.98299 
+z
+" clip-path="url(#p61c5aa9ccd)" style="fill: #5bbd72; opacity: 0.88"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m52f101b663" d="M 0 0 
+L 0 3 
+" style="stroke: #000000; stroke-width: 0.6"/>
+      </defs>
+      <g>
+       <use xlink:href="#m52f101b663" x="73.722129" y="96.21825" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="73.722129" y="109.556844" transform="rotate(-0 73.722129 109.556844)">Ideal</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m52f101b663" x="141.564375" y="96.21825" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="141.564375" y="109.556844" transform="rotate(-0 141.564375 109.556844)">QPD (Noisy)</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m52f101b663" x="209.406621" y="96.21825" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(188.774121 109.556844)">PDR-QPD</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(184.743808 119.634875)">(Mitigated)</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_4">
+      <path d="M 46.415625 75.651964 
+L 236.713125 75.651964 
+" clip-path="url(#p61c5aa9ccd)" style="fill: none; stroke-dasharray: 0.4,0.66; stroke-dashoffset: 0; stroke: #b0b0b0; stroke-opacity: 0.3; stroke-width: 0.4"/>
+     </g>
+     <g id="line2d_5">
+      <defs>
+       <path id="m8b901f1c0b" d="M 0 0 
+L -3 0 
+" style="stroke: #000000; stroke-width: 0.6"/>
+      </defs>
+      <g>
+       <use xlink:href="#m8b901f1c0b" x="46.415625" y="75.651964" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: end" x="39.915625" y="79.071261" transform="rotate(-0 39.915625 79.071261)">0.550</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <path d="M 46.415625 49.944107 
+L 236.713125 49.944107 
+" clip-path="url(#p61c5aa9ccd)" style="fill: none; stroke-dasharray: 0.4,0.66; stroke-dashoffset: 0; stroke: #b0b0b0; stroke-opacity: 0.3; stroke-width: 0.4"/>
+     </g>
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m8b901f1c0b" x="46.415625" y="49.944107" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: end" x="39.915625" y="53.363404" transform="rotate(-0 39.915625 53.363404)">0.575</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <path d="M 46.415625 24.23625 
+L 236.713125 24.23625 
+" clip-path="url(#p61c5aa9ccd)" style="fill: none; stroke-dasharray: 0.4,0.66; stroke-dashoffset: 0; stroke: #b0b0b0; stroke-opacity: 0.3; stroke-width: 0.4"/>
+     </g>
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m8b901f1c0b" x="46.415625" y="24.23625" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: end" x="39.915625" y="27.655547" transform="rotate(-0 39.915625 27.655547)">0.600</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="8.278594" y="60.22725" transform="rotate(-90 8.278594 60.22725)">Expectation Value ⟨ZZ⟩</text>
+    </g>
+   </g>
+   <g id="patch_6">
+    <path d="M 46.415625 96.21825 
+L 46.415625 24.23625 
+" style="fill: none; stroke: #000000; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 46.415625 96.21825 
+L 236.713125 96.21825 
+" style="fill: none; stroke: #000000; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="73.722129" y="48.054128" transform="rotate(-0 73.722129 48.054128)">0.57502</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="141.564375" y="67.993142" transform="rotate(-0 141.564375 67.993142)">0.55563</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="209.406621" y="57.113577" transform="rotate(-0 209.406621 57.113577)">0.56621</text>
+   </g>
+   <g id="text_11">
+    <g id="patch_8">
+     <path d="M 71.23625 46.21628 
+L 211.8925 46.21628 
+Q 214.2925 46.21628 214.2925 43.81628 
+L 214.2925 27.11553 
+Q 214.2925 24.71553 211.8925 24.71553 
+L 71.23625 24.71553 
+Q 68.83625 24.71553 68.83625 27.11553 
+L 68.83625 43.81628 
+Q 68.83625 46.21628 71.23625 46.21628 
+z
+" style="fill: #ffffff; stroke: #808080; stroke-width: 0.5; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(80.935625 33.19428)">Absolute error (QPD): 0.01939</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(71.23625 42.15253)">Absolute error (PDR-QPD): 0.00881</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(70.446406 9.038437)">IBM Fez Hardware Validation</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(55.008125 20.23625)">(Single run, linear PDR calibration)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p61c5aa9ccd">
+   <rect x="46.415625" y="24.23625" width="190.2975" height="71.982"/>
+  </clipPath>
+ </defs>
+</svg>

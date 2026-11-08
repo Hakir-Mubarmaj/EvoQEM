@@ -1,0 +1,237 @@
+A) paper name: Error mitigation with Clifford quantum-circuit data
+
+Introduction: Currently, one of the great unsolved technological
+questions is whether near-term quantum computers
+will be useful for practical applications. These noisy
+intermediate-scale quantum (NISQ) devices do not
+have enough qubits or high enough gate fidelities for
+fault-tolerant quantum error correction [41]. Consequently, any observable measured on a NISQ device
+will have limited accuracy. However, candidate applications such as quantum chemistry require chemical
+accuracy to beat classical methods [8, 33]. Similarly
+quantum approximate optimization has the potential
+to beat classical optimization when high accuracy is
+achieved [14, 21, 25].
+Hence, it is widely regarded that near-term quantum advantage will only be achieved through error
+mitigation. Error mitigation (EM) is broadly defined as methods that reduce the impact of noise,
+rather than directly correct it. EM includes efforts
+to optimize quantum circuits with compiling and machine learning [12, 13, 35]. It also includes variational quantum algorithms [3, 10, 18, 34, 40], some
+of which can be used to remove the effects of incoherent noise [9, 29–31, 42]. A prominent EM approach is to perform classical post-processing of observable expectation values. Perhaps the most widely
+used example is state-of-the-art zero-noise extrapolation (ZNE), which has shown great promise [16, 28].
+Figure 1: Our proposed error mitigation method. For a set
+of states that are classically simulable, one generates noisy
+and corresponding noise-free data on a quantum computer
+and classical computer, respectively. One learns to correct
+on this training data by fitting the parameters of an ansatz.
+Finally, one uses this ansatz with the fitted parameters to
+predict noise-free observables for arbitrary quantum states.
+ZNE involves collecting data at various levels of
+noise, achieved by stretching gate times or inserting
+identities, and using this noisy data to extrapolate
+an observable’s expectation value to the zero-noise
+limit [6, 17, 23, 37, 45]. It has been successfully employed to correct ground-state energies for problem
+sizes up to 4-qubits [16, 26, 28]. Among other approaches are quasi-probabilistic error mitigation [45]
+and numerous application specific approaches leveraging symmetries and/or post-selection techniques to
+mitigate errors [4, 7, 32, 38].
+A crucial requirement of any EM method is scalability. While it is relatively easy to develop EM methods
+for small qubit systems, EM methods that work effectively at the quantum supremacy scale (> 50 qubits)
+are much more challenging to construct. Even methods that are in principle scalable may not actually
+scale well in practice.
+This work aims to address this issue by proposing
+a novel, EM method that is applicable to all gatebased quantum computers. The basic idea is shown
+in Fig. 1. First we generate training data, of the
+form {X
+noisy
+i
+, Xexact
+i
+}, where X
+noisy
+i
+and Xexact
+i
+are
+the noisy and noiseless versions of an observable’s expectation value of interest. The noisy values are obtained directly from the quantum computer, while the
+noiseless values are simulated on a classical computer.
+The training data are obtained from quantum circuits
+composed largely of Clifford gates (gates that map
+Pauli operators to Pauli operators), and hence these
+circuits are efficiently classically simulable. Next we
+fit the training data with a model, and finally we use
+the fitted model to predict the noise-free observable.
+Our method is conceptually simple and could be
+refined with sophisticated model fitting methods offered by modern machine learning [36]. Nevertheless,
+even with simple linear-regression-based fitting, our
+method performs extremely well in practice. We consider the task of estimating the ground-state energy of
+an Ising spin chain by variationally training the Quantum Alternating Operator Ansatz (QAOA) [21, 25].
+For this task, our method reduces the error by
+an order-of-magnitude for both a 16-qubit problem
+solved on IBMQ quantum computer and a 64-qubit
+problem solved on a noisy simulator, though we expect that this improvement will generically vary depending upon the task considered. We also demonstrate the utility of our method for non-variational algorithms such as quantum phase estimation. Finally
+we find that our method appears to perform better
+than ZNE for the larger scale problems we consider.
+
+
+B) paper name: CutQC: Using Small Quantum Computers for Large Quantum Circuit Evaluations
+
+Introduction: Quantum computing (QC) has emerged as a promising computational approach with the potential to benefit numerous scientific
+fields [41]. For example, QC offers the possibility of reduced computational time for problems in machine learning [8, 27], chemistry [1, 25], and other areas [31]. Some of the earliest QC work
+shows that quantum algorithms for factoring [43] can be exponentially faster and that database search [17] can be polynomially faster
+than their classical counterparts. However, these quantum algorithms assume the existence of large-scale, fault-tolerant, universal
+quantum computers.
+Instead, today’s quantum computers are noisy intermediatescale quantum (NISQ) devices [39], and major challenges limit their
+effectiveness. Noise can come from limited coherence time [24],
+frequency selection for individual qubits [26], crosstalk among
+qubits [33], and limited control bandwidth [42]. Because of these
+and other issues, the difficulty of building reliable quantum computers increases dramatically with increasing number of qubits. For
+example, Figure 1 shows the fidelities obtained from executions of
+the BernsteinśVazirani (BV) algorithm on IBM quantum computers
+with increasing number of qubits. We executed quantum circuits
+of only half the size of the devices themselves and mapped the circuits to use the best qubits on the devices by using a state-of-theart noise-adaptive compiler [32]. However, larger devices realize
+significantly worse fidelity than do smaller devices.
+More fundamentally, such intermediate-scale quantum devices
+are hard limited by their qubit count. Currently, only small quantum
+circuits can be run on small quantum computers. The largest superconducting quantum computers available today have 53 qubits [3,
+21], and their relatively poor fidelity further limits the size of circuits that can be run. Large neutral atom qubit arrays have been
+developed recently, but achieving high gate fidelity remains a significant challenge [16].
+Both the noise and the intermediate-scale characteristics of NISQ
+devices present significant obstacles to their practical applications.
+On the other hand, the only currently viable alternative for QC
+evaluationÐclassical simulations of quantum circuitsÐproduces
+noiseless output but is not tractable in general. For example, state-ofthe-art full-state classical simulations of quantum circuits of merely
+45 qubits require tens of hours on thousands of high-performance
+compute nodes and hundreds of terabytes of memory [52].
+This work uses circuit cutting to expand the reach of small
+quantum computers with partitioning and postprocessing techniques that augment small QC platforms with classical computing
+resources. We develop the first end-to-end hybrid approach that
+automatically locates efficient cut positions to cut a large quantum
+circuit into smaller subcircuits that are each independently executed by using quantum devices with fewer qubits. Via scalable
+postprocessing techniques, the output of the original circuit can
+then be reconstructed or sampled efficiently from the subcircuit
+outputs.
+To evaluate the performance of CutQC, we benchmarked six
+different quantum circuits that represent a general set of circuits
+for gate-based QC platforms and promising near-term applications.
+We demonstrate executing quantum circuits of up to 100 qubits on existing NISQ devices. This is significantly beyond the current
+reach of either quantum or classical methods alone.
+Our contributions include the following:
+(1) Expanding the size of quantum circuits that can be run on
+NISQ devices and classical simulation by combining the two.
+Our method allows executions of quantum circuits more than
+twice the size of the available quantum computer backend
+and much beyond the classical simulation limit.
+(2) Improving the fidelity of quantum circuit executions on
+NISQ devices. We show an average of 21% to 47% improvement to 𝜒
+2
+loss for different benchmarks by using CutQC
+with small quantum computers, as compared with direct
+executions on large quantum computers.
+(3) Speeding up the overall quantum circuit execution over
+classical simulations. We use quantum computers as coprocessors to achieve 60X to 8600X runtime speedup over classical simulations for different benchmarks.
+
+
+
+C) paper name: Learning-based quantum error mitigation
+
+Introduction: It is widely believed that we are entering the era when
+the computational power of quantum machines surpasses
+any classical resource for certain specific problems [1, 2].
+One of the main obstacles to achieving the practical application of quantum computing is the noise caused by
+decoherence and imperfect control. There exist wellunderstood solutions involving quantum error correction,
+which can suppress the computing error to an arbitrarily low-level when the error rate of elementary gates is
+lower than the threshold. However, implementing this
+approach involves a multiplicative increase in the number
+of physical qubits, potentially by a factor of a thousand
+or more [3]. This appears prohibitive for the near future.
+Therefore for noisy intermediate-scale quantum (NISQ)
+devices, alternative approaches which are usually termed
+quantum error mitigation have been developed.
+At the base level, it is of course essential to minimise
+noise during the physical execution of a gate, through
+optimising control parameters et cetera [4], and here we
+take it as read that such measures have been taken.
+Above this level, one can use error extrapolation and
+probabilistic error cancellation [5–7]; here the estimator
+of the computing result is carefully constructed and optimised using the knowledge of error distribution, such
+that the impact of errors is minimised [8–10]. Similar
+ideas have been used to correct measurement errors [11–
+13]. By exploring the symmetry of the quantum circuit,
+some errors in the circuit can be detected and eliminated
+using post-selection [14, 15]. A number of related ideas
+such as subspace expansion [16] and continuous error mitigation [17], among others, are being explored.
+In many potential NISQ applications, for example the
+use of variational quantum algorithms (QVAs) in eigensolver or simulation [5, 18, 19], a key task is to evaluate
+mean values of some observables – in essence, to measure
+the expected value of one or more qubits as the output of
+a circuit. The estimator of the mean is usually biased as
+a result of the noise. Then the role of error mitigation is
+to remove the bias by modifying the estimator. Because
+of the linearity of quantum mechanics, a linear combination of noisy circuits with appropriate coefficients (both
+positive and negative) can be equivalent to a noise-free
+circuit [6]. One can implement such a combination by
+randomly sampling from a particular set of quantum circuits, derived from the primary circuit by (typically) the
+addition of certain gate(s), and taking a weighted average over the recorded outcomes. This can be called
+probabilistic error cancellation [6]. If the error model,
+i.e. a precise theoretical characterisation of the errors in
+the physical gates, is available then it may be possible to
+analytically derive the ideal distribution of circuits, both
+their nature and the proper weightings with which their
+outputs should be combined. Then perfect compensation for errors is achievable [6, 7]. However, for this to be
+practical, the error model must be determined through
+some form of tomography [7]; this may be difficult [20]
+or infeasibly costly unless error correlations (either spatial or temporal) involve only a few qubits. Nevertheless,
+when such conditions are even approximately met then
+the approach can be very valuable, as has been successfully demonstrated in small systems of superconducting
+qubits and trapped ions [9, 10].
+In this paper, we present a novel and intuitive way
+to mitigate the errors. Instead of determining the error
+model that afflicts the experimental system and deriving
+the proper circuit distribution (i.e. combination coefficients), the distribution is determined via an ab initio
+learning process. We choose the distribution by minimising the error in the final computing result for a set of training computing tasks. The efficiency of the learningbased error mitigation is due to its simplicity and intuitivity. All potential error correlations, i.e. spatial and
+temporal correlations, are automatically taken into account in the learning process. Therefore, it is a promising way to realise reliable quantum computing with deep
+circuits on large systems.
+An obvious difficulty for a learning-based error mitigation process, if it is to be relevant to real quantum
+computers implemented at scale, is that one cannot determine the correct value of a given observable (the ‘goal’
+of the mitigation) by any means other than the execution
+of an ideal quantum circuit! Here we show that learningbased error-mitigation is indeed feasible because Cliffordcircuit training tasks are sufficient to find an optimal circuit distribution, regardless of the error correlations. We
+derive suitable Clifford circuits from the original (primary) circuit, and for such circuits we can evaluate the
+correct result by using efficient simulations on a classical computer [21–23]. We note that in the present work,
+the sufficiency is proved under the assumption of negligible single-qubit gate errors. In most quantum computing systems, single-qubit gates do indeed attain a
+much higher fidelity than other gates, e.g. an average
+gate fidelity of 99.9999% has been achieved with trapped
+ions [24] whereas the record for two-qubit fidelity is three
+orders of magnitude lower at 99.9% [25, 26].
+In the following we will consider two types of quantum
+computers, and argue that they are practically equivalent. The distinction concerns the question of whether it
+is trivial (zero resource cost) to reconfigure the computer
+from one circuit to another. The more convenient theoretical assumption is that it is indeed cost-free to reconfigure, in which case the learning process is a structureless random sampling. In real systems an experimentalist
+may prefer to configure a circuit once and sample from
+it many times before reconfiguring. The learning-based
+error-mitigation has two stages: the learning, in which we
+need to evaluate a loss function, and the error-mitigated
+computation. If the quantum circuit can be updated after each run, we use the Monte Carlo summation in both
+the loss function evaluation and computing, in order to
+maximise the number of training circuits. For scenarios where reconfiguration is costly, we propose a method
+using significant-error interventions.
+We demonstrate our protocol both with real quantum hardware and with exactly-simulated virtual devices. We consider various tasks that these devices are
+attempting to perform, including variational quantum algorithms. For the simulated machines we are of course
+able to specify the noise model as we wish. In order
+to compare with previously reported tomography-based
+methods [6, 7], we specify that there are local (twoqubit) errors that conform to a known noise model but
+that the real noise model also involves additional correlated errors: either spatial ‘cross talk’ or temporal correlations. The learning-based protocol outperforms the
+tomography-based protocol by a factor of approximately
+4-to-5 depending on the task at hand. Indeed in all cases
+that we explore, with the real or virtual quantum systems, we find that the learning-based protocol performs
+very well.
+We comment and show numerical data for the scalability of our method to larger systems, and we consider various learning strategies (including single-parameter versus
+multi-parameter, and summation versus product ansatz)
+and we consider the distinction between ideal ‘infinite
+time’ learning and resource-constrained learning. Because of the simplicity, effectiveness and flexibility of the
+learning-based approach, we conclude that it is a promising way to realise reliable value from NISQ-era quantum
+computing.
+This paper is organised as follows. In Section II and
+Section III we introduce and describe the general protocol. In Section IV we discuss practical implementation of
+the protocol, and focusing on a Pauli error model (Section VI) we describe three practical methods in detail in
+Section VII, Section VIII and Section IX with numerical results in the first two. Section V separately introduces an alternative way to establish the cost function.
+In Section X we demonstrate our protocol on real quantum hardware. Finally, in Section XI we summarise the
+protocol, conclude the main results and discuss future
+directions.

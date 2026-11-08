@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="256.11125pt" height="122.16775pt" viewBox="0 0 256.11125 122.16775" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-25T17:00:08.719991</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 122.16775 
+L 256.11125 122.16775 
+L 256.11125 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 46.705313 88.34625 
+L 231.115313 88.34625 
+L 231.115313 24.23625 
+L 46.705313 24.23625 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 55.087585 88.34625 
+L 77.305658 88.34625 
+L 77.305658 30.597268 
+L 55.087585 30.597268 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #e07070; opacity: 0.82"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 156.078823 88.34625 
+L 178.296895 88.34625 
+L 178.296895 27.289107 
+L 156.078823 27.289107 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #e07070; opacity: 0.82"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 77.305658 88.34625 
+L 99.52373 88.34625 
+L 99.52373 39.155336 
+L 77.305658 39.155336 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #5bbd72; opacity: 0.82"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 178.296895 88.34625 
+L 200.514967 88.34625 
+L 200.514967 42.751163 
+L 178.296895 42.751163 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #5bbd72; opacity: 0.82"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 99.52373 88.34625 
+L 121.741802 88.34625 
+L 121.741802 30.597268 
+L 99.52373 30.597268 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #6aade4; opacity: 0.82; stroke: #000000; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 200.514967 88.34625 
+L 222.73304 88.34625 
+L 222.73304 42.751163 
+L 200.514967 42.751163 
+z
+" clip-path="url(#pf4d40c76ae)" style="fill: #6aade4; opacity: 0.82; stroke: #000000; stroke-linejoin: miter"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m3f4f97fbc8" d="M 0 0 
+L 0 3 
+" style="stroke: #000000; stroke-width: 0.6"/>
+      </defs>
+      <g>
+       <use xlink:href="#m3f4f97fbc8" x="88.414694" y="88.34625" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(66.874694 100.925)">Connected</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(63.439069 109.88325)">(n_SWAP=0)</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(51.382819 119.064)">(decision: DIRECT)</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m3f4f97fbc8" x="189.405931" y="88.34625" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(154.997806 100.925)">Routing Required</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(164.430306 109.88325)">(n_SWAP=2)</text>
+      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(158.536556 119.064)">(decision: QPD)</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_3">
+      <path d="M 46.705313 88.34625 
+L 231.115313 88.34625 
+" clip-path="url(#pf4d40c76ae)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.3; stroke-width: 0.4; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <defs>
+       <path id="m2b947169c2" d="M 0 0 
+L -3 0 
+" style="stroke: #000000; stroke-width: 0.6"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2b947169c2" x="46.705313" y="88.34625" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: end" x="40.205313" y="91.765547" transform="rotate(-0 40.205313 91.765547)">0.000</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_5">
+      <path d="M 46.705313 52.38798 
+L 231.115313 52.38798 
+" clip-path="url(#pf4d40c76ae)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.3; stroke-width: 0.4; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m2b947169c2" x="46.705313" y="52.38798" style="stroke: #000000; stroke-width: 0.6"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: end" x="40.205313" y="55.807277" transform="rotate(-0 40.205313 55.807277)">0.005</text>
+     </g>
+    </g>
+    <g id="text_5">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="8.317969" y="56.29125" transform="rotate(-90 8.317969 56.29125)">Mean Absolute Error |E_mit − E_ideal|</text>
+    </g>
+   </g>
+   <g id="patch_9">
+    <path d="M 46.705313 88.34625 
+L 46.705313 24.23625 
+" style="fill: none; stroke: #000000; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 46.705312 88.34625 
+L 231.115313 88.34625 
+" style="fill: none; stroke: #000000; stroke-width: 0.6; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="110.632766" y="28.781904" transform="rotate(-0 110.632766 28.781904)">0.00803</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: middle" x="211.624004" y="40.935799" transform="rotate(-0 211.624004 40.935799)">0.00634</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(26.161094 9.038437)">Experiment 2: Adaptive Framework Accuracy</text>
+    <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif" transform="translate(23.149375 20.23625)">Adaptive matches the best strategy (20 trials)</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_11">
+     <path d="M 112.491563 65.86375 
+L 225.515313 65.86375 
+Q 227.115313 65.86375 227.115313 64.26375 
+L 227.115313 29.83625 
+Q 227.115313 28.23625 225.515313 28.23625 
+L 112.491563 28.23625 
+Q 110.891563 28.23625 110.891563 29.83625 
+L 110.891563 64.26375 
+Q 110.891563 65.86375 112.491563 65.86375 
+z
+" style="fill: #ffffff; opacity: 0.85; stroke: #cccccc; stroke-width: 0.6; stroke-linejoin: miter"/>
+    </g>
+    <g id="patch_12">
+     <path d="M 114.091563 37.515 
+L 130.091563 37.515 
+L 130.091563 31.915 
+L 114.091563 31.915 
+z
+" style="fill: #e07070; opacity: 0.82"/>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: start" x="136.491563" y="37.515" transform="rotate(-0 136.491563 37.515)">Direct+PDR</text>
+    </g>
+    <g id="patch_13">
+     <path d="M 114.091563 49.2575 
+L 130.091563 49.2575 
+L 130.091563 43.6575 
+L 114.091563 43.6575 
+z
+" style="fill: #5bbd72; opacity: 0.82"/>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: start" x="136.491563" y="49.2575" transform="rotate(-0 136.491563 49.2575)">QPD+PDR</text>
+    </g>
+    <g id="patch_14">
+     <path d="M 114.091563 61 
+L 130.091563 61 
+L 130.091563 55.4 
+L 114.091563 55.4 
+z
+" style="fill: #6aade4; opacity: 0.82; stroke: #000000; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Helvetica', 'Arial', sans-serif; text-anchor: start" x="136.491563" y="61" transform="rotate(-0 136.491563 61)">Adaptive (Theorem 1)</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf4d40c76ae">
+   <rect x="46.705313" y="24.23625" width="184.41" height="64.11"/>
+  </clipPath>
+ </defs>
+</svg>

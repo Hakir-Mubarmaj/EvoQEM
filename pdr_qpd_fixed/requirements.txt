@@ -1,0 +1,11 @@
+# PDR-QPD v3 — Pinned dependencies
+# Tested on: Qiskit 2.2.1, Python 3.11/3.12, Windows/Linux
+# Last verified: August 2026
+
+qiskit==2.2.1
+qiskit-aer>=0.17.0
+qiskit-ibm-runtime>=0.35.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+numpy>=1.26.0,<3.0.0
+matplotlib>=3.8.0

@@ -1,0 +1,9 @@
+venv/
+trash/
+model_output/
+*.joblib
+*.pkl
+*.csv
+*.pyd
+*.dll
+*.qpy

@@ -1,0 +1,13 @@
+{
+  "n_repeats": 100,
+  "ideal": 0.5750168603707412,
+  "noisy_mean_err": 0.008359186037074126,
+  "noisy_sem": 0.0005973810080229763,
+  "cpdr_mean_err": 0.004946848366200863,
+  "cpdr_sem": 0.0003755902750260261,
+  "paired_t_stat": 4.809788345004255,
+  "paired_pvalue": 5.408048351667065e-06,
+  "frac_improved": 0.67,
+  "bootstrap_mean_improv_lo": 0.00203975251935993,
+  "bootstrap_mean_improv_hi": 0.004842889644318826
+}
